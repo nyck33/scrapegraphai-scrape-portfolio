@@ -3,3 +3,8 @@
 
 resource.json
 
+#images
+*.png
+*.jpg
+*.jpeg
+*.gif
