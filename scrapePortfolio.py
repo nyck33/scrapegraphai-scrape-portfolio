@@ -1,21 +1,17 @@
-import os
 import streamlit as st
-from dotenv import load_dotenv
 from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
 from scrapegraphai.graphs import SmartScraperGraph
 
 # Function to load environment variables and initialize the model instances
 def initialize_models():
-    load_dotenv()
-    
     llm_model_instance = AzureChatOpenAI(
-        openai_api_version=os.environ["AZURE_OPENAI_API_VERSION"],
-        azure_deployment=os.environ["AZURE_OPENAI_CHAT_DEPLOYMENT_NAME"],
+        openai_api_version=st.secrets["AZURE_OPENAI_API_VERSION"],
+        azure_deployment=st.secrets["AZURE_OPENAI_CHAT_DEPLOYMENT_NAME"],
     )
 
     embedder_model_instance = AzureOpenAIEmbeddings(
-        azure_deployment=os.environ["AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT_NAME"],
-        openai_api_version=os.environ["AZURE_OPENAI_API_VERSION"],
+        azure_deployment=st.secrets["AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT_NAME"],
+        openai_api_version=st.secrets["AZURE_OPENAI_API_VERSION"],
     )
 
     graph_config = {
