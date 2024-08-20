@@ -36,20 +36,38 @@ def run_smart_scraper(prompt, source_url, config):
 def main():
     st.title("Smart Scraper with Azure OpenAI")
 
-    # User input for prompt and source URL
-    prompt = st.text_area("Enter the prompt:", "Find some information about what does the company do, the name, and a contact email.")
-    source_url = st.text_input("Enter the source URL:", "https://scrapegraphai.com/")
+    # Labeled Text Box for User Input
+    st.subheader("Enter the details below:")
     
+    # User input for the prompt
+    prompt = st.text_input(
+        label="Enter your query or prompt:",
+        value="",  # Default value is empty, allowing user to type their query
+        placeholder="Type your question here..."  # Placeholder text for guidance
+    )
+    
+    # User input for the source URL
+    source_url = st.text_input(
+        label="Enter the source URL:",
+        value="https://nyck33.github.io/2021_portfolio/"
+    )
+    
+    # Button to run the Smart Scraper
     if st.button("Run Smart Scraper"):
-        # Initialize models
-        config = initialize_models()
+        if prompt.strip() == "":  # Check if prompt is empty or only whitespace
+            st.error("You forgot to write a question!")  # Display error message in red
+        elif source_url.strip() == "":  # Check if source URL is empty or only whitespace
+            st.error("You forgot to enter the source URL!")  # Display error message in red
+        else:
+            # Initialize models
+            config = initialize_models()
 
-        # Run the SmartScraperGraph
-        result = run_smart_scraper(prompt, source_url, config)
+            # Run the SmartScraperGraph
+            result = run_smart_scraper(prompt, source_url, config)
 
-        # Display the result as a formatted JSON dictionary
-        st.subheader("Scraped Data:")
-        st.json(result)
+            # Display the result as a formatted JSON dictionary
+            st.subheader("Scraped Data:")
+            st.json(result)
 
 if __name__ == "__main__":
     main()
