@@ -8,12 +8,12 @@ def initialize_models():
         openai_api_version=st.secrets["AZURE_OPENAI_API_VERSION"],
         azure_deployment=st.secrets["AZURE_OPENAI_CHAT_DEPLOYMENT_NAME"],
     )
-
+    '''
     embedder_model_instance = AzureOpenAIEmbeddings(
         azure_deployment=st.secrets["AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT_NAME"],
         openai_api_version=st.secrets["AZURE_OPENAI_API_VERSION"],
     )
-
+    '''
     graph_config = {
         "llm": {"model_instance": llm_model_instance},
         "embeddings": {"model_instance": embedder_model_instance}
