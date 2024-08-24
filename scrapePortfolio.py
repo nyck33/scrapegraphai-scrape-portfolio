@@ -16,9 +16,13 @@ def initialize_models():
         api_key=st.secrets["AZURE_OPENAI_EMBEDDING_API_KEY"]
     )
 
+    # Supposing model_tokens are 100K
+    model_tokens_count = 100000
+
     graph_config = {
 
-        "llm": {"model_instance": llm_model_instance},
+        "llm": {"model_instance": llm_model_instance,
+                "model_tokens": model_tokens_count},
         "embeddings": {"model_instance": embedder_model_instance}
     }
     
