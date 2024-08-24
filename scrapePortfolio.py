@@ -11,7 +11,7 @@ def initialize_models():
 
     embedder_model_instance = AzureOpenAIEmbeddings(
         azure_deployment=st.secrets["AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT_NAME"],
-        openai_api_version=st.secrets["AZURE_OPENAI_API_VERSION"],
+        openai_api_version=st.secrets["AZURE_OPENAI_EMBEDDING_API_VERSION"],
     )
 
     graph_config = {
